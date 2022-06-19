@@ -1,0 +1,87 @@
+﻿#include <string>
+#include <iostream>
+#include <iostream>
+#include <fstream>
+#include <windows.h>
+using namespace std;
+
+int main()
+{
+    
+    
+    getline(cin, str);
+    cin >> str;
+    str.find("  ");*/
+	setlocale(LC_ALL, "ru");
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+
+	string path, temp,temp1;
+	path = "OOp_5_1.cpp";
+	ifstream inAll;
+	inAll.open(path);
+
+	if (!inAll.is_open())
+	{
+		cout << "Ошибка открытия!";
+	}
+	else
+	{
+		while (!inAll.eof())
+		{
+
+			getline(inAll, temp);
+			if (temp.find("
+			if (temp.find("
+			{
+			int i = temp.find("
+			int i = temp.find("
+			
+			if (i != 0)
+			{
+				temp.resize(i);
+				temp1 += temp;
+				temp1 += "\n";
+			}
+			}
+			
+			if (temp.find("
+			{
+				temp1 += temp;
+				temp1 += "\n";
+			}
+			else if (temp.find("
+			{
+				int i = temp.find("
+				
+				if(i != 0)
+				{
+					temp.resize(i);
+					temp1 += temp;
+					temp1 += "\n";
+				}
+			}
+			
+		}
+	}
+	inAll.close();
+	cout << temp1;
+	cout << endl;
+
+	
+
+	path = "OOp_5_1.txt";
+	ofstream all;
+	all.open(path, ofstream::out);
+	if (!all.is_open())
+	{
+		cout << "Ошибка!";
+	}
+	else
+	{
+		all << temp1;
+	}
+	all.close();
+	
+}
+
