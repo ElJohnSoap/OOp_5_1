@@ -8,15 +8,15 @@ using namespace std;
 int main()
 {
     
-    
-    getline(cin, str);
-    cin >> str;
-    str.find("  ");*/
 	setlocale(LC_ALL, "ru");
 	SetConsoleOutputCP(1251);
 	SetConsoleCP(1251);
 
-	string path, temp,temp1;
+	string path, temp,tempAll;
+	string singleLineComment = "//";
+	string softwareSlash = "\"\
+	cout << singleLineComment << endl << endl;
+	cout << softwareSlash << endl << endl;
 	path = "OOp_5_1.cpp";
 	ifstream inAll;
 	inAll.open(path);
@@ -29,43 +29,48 @@ int main()
 	{
 		while (!inAll.eof())
 		{
-
 			getline(inAll, temp);
-			if (temp.find("
-			if (temp.find("
-			{
-			int i = temp.find("
-			int i = temp.find("
 			
-			if (i != 0)
+			if (temp.find("//") != string::npos)
 			{
-				temp.resize(i);
-				temp1 += temp;
-				temp1 += "\n";
-			}
-			}
-			
-			if (temp.find("
-			{
-				temp1 += temp;
-				temp1 += "\n";
+				if (temp.find(softwareSlash) != string::npos && temp.find("//") > temp.find(softwareSlash))
+				{
+					tempAll += temp;
+					tempAll += "\n";
+				}
+				else 
+				{
+					int i = temp.find("//");
+					if (i != 0)
+					{
+						temp.resize(i);
+						tempAll += temp;
+						tempAll += "\n";
+					}
+				}
 			}
 			else if (temp.find("
-			{
-				int i = temp.find("
-				
-				if(i != 0)
 				{
-					temp.resize(i);
-					temp1 += temp;
-					temp1 += "\n";
+					getline(inAll, temp);
+					continue;
 				}
+				if (temp.find("*/") != string::npos)
+				{
+					continue;
+					
+				}
+			}
+				
+			else if (temp.find("//") == string::npos)
+			{
+				tempAll += temp;
+				tempAll += "\n";
 			}
 			
 		}
 	}
 	inAll.close();
-	cout << temp1;
+	cout << tempAll;
 	cout << endl;
 
 	
@@ -79,7 +84,7 @@ int main()
 	}
 	else
 	{
-		all << temp1;
+		all << tempAll;
 	}
 	all.close();
 	
